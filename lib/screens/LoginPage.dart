@@ -3,10 +3,11 @@
 //==========================================================================
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import '../models/AppConfigModel.dart';
 import '../screens/HomePage.dart';
 import '../widgets/ButtonBarWidget.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+
 
 //==========================================================================
 // MAIN CLASS

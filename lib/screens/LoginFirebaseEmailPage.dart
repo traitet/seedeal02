@@ -2,33 +2,30 @@
 // IMPORT
 //==========================================================================
 import 'package:flutter/material.dart';
-import '../models/InputSelectionModel.dart';
+import 'package:seedeal02/screens/HomePage.dart';
+import 'package:seedeal02/services/FirebaseAuthenService.dart';
+import 'package:seedeal02/services/LoggerService.dart';
 import '../widgets/ButtonBarWidget.dart';
-import '../widgets/RadioHoriGroupWidget.dart';
 import '../widgets/TextFieldWidget.dart';
 import '../models/AppConfigModel.dart';
 
 //==========================================================================
 // CLASS
 //==========================================================================
-class SignUpPage extends StatefulWidget {
+class LoginFirebaseEmailPage extends StatefulWidget {
  
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _LoginFirebaseEmailPageState createState() => _LoginFirebaseEmailPageState();
 }
 
 //==========================================================================
 // STATE
 //==========================================================================
-class _SignUpPageState extends State<SignUpPage> {
-
-
-
+class _LoginFirebaseEmailPageState extends State<LoginFirebaseEmailPage> {
   @override
   Widget build(BuildContext context) {
-    final nameController = TextEditingController();
-    final surnameController = TextEditingController(); 
-
+    final emailController = TextEditingController()..text = 'tratiet@gmail.com';
+    final passwordController = TextEditingController()..text = 'computer';    
     return MaterialApp(
 //==========================================================================
 // SHOW DEBUG
@@ -50,7 +47,7 @@ class _SignUpPageState extends State<SignUpPage> {
             icon: Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          title: Text('Sign-up'),
+          title: Text('Login'),
         ),
 //==========================================================================
 // BODY
@@ -59,47 +56,51 @@ class _SignUpPageState extends State<SignUpPage> {
         Container(
           padding: EdgeInsets.all(8),
           color: Colors.white,
-          child: ListView(children: <Widget>[
-            SizedBox(height: 8),
+          child: ListView(
+
+            children: <Widget>[
+//==========================================================================
+// TEXT
+//==========================================================================
+          SizedBox(height: 72),             
+//==========================================================================
+// TEXT
+//==========================================================================  
+          Container(
+            decoration: BoxDecoration(),
+            padding: EdgeInsets.all(8),
+            child: Text(
+              'Fill Username and password. Then, click login to enter the system',
+              maxLines: 3,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              style: AppConfigModel().textStyleM),),      
+          SizedBox(height: 24),                     
 //==========================================================================
 // TEXT: E-MAIL
 //==========================================================================            
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('E-mail',style: AppConfigModel().textStyleMBold),
-            ),
-            TextFieldWidget(text: '*E-mail', icon: Icons.email),
-            TextFieldWidget(text: '*Password', icon: Icons.vpn_key),    
-            TextFieldWidget(text: '*Re-Password', icon: Icons.vpn_key),             
-            SizedBox(height: 8),       
-//==========================================================================
-// TEXT: PERSONAL DETAIL
-//==========================================================================                 
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Personal Details',style: AppConfigModel().textStyleMBold),
-            ),                     
-            TextFieldWidget(text: '*Name', icon: Icons.account_box,controller: nameController,),
-            TextFieldWidget(text: '*Surname', icon: Icons.account_circle,controller: surnameController,),   
-//==========================================================================
-// RADIO: SEX
-//==========================================================================             
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: RadioHoriGroupWidget(itemList: [InputSelectionModel(index: 1,name: "Male",),InputSelectionModel(index: 2,name: "Female",),]),
-            ),                 
-            SizedBox(height: 8),
+          TextFieldWidget(text: '*E-mail', icon: Icons.email, textInputType: TextInputType.emailAddress,),
+          TextFieldWidget(text: '*Password', icon: Icons.vpn_key, ),          
+          SizedBox(height: 24),   
 //==========================================================================
 // BUTTON
 //==========================================================================      
-            ButtonBarWidget(onPressed: () {
-                  print(nameController.text);
-                  print('TEST');                  
-
-            },splashColor: Colors.pink,text: "Save",),            
+          ButtonBarWidget(onPressed: () {
+            logger.i(emailController.text);
+            loginWithEmail(context, email: emailController.text, password: passwordController.text)
+            .then((bool isComplete) {isComplete ?? Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));}
+         ).catchError((e) => logger.i(e));
+          },splashColor: Colors.pink,text: "Login",),      
+                         
           ],),
+
+          
         ),
       ),
     );
-  }
-}
+  } //BUILD WIDGET 
+} // CLASS
+
+
+
+
