@@ -3,6 +3,7 @@
 //==========================================================================
 import 'package:flutter/material.dart';
 import 'package:seedeal02/screens/LoginFirebaseEmailPage.dart';
+import 'package:seedeal02/screens/DealPostPage.dart';
 import './screens/AddTravellerPage.dart';
 import './screens/PersonalDetailPage.dart';
 import './screens/PaymentMethodPage.dart';
@@ -23,6 +24,7 @@ import './screens/TravelBuddiesPage.dart';
 import './screens/LoginPage.dart';
 import './screens/HotelDetailPage.dart';
 import './screens/MorePage.dart';
+import './screens/DealListGetPage.dart';
 
 //==========================================================================
 // MAIN: RUNAPP
@@ -114,6 +116,8 @@ class _MyHomePageState extends State<MyHomePage> {
 // RAISED BUTTON
 //========================================================================== 
             RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()),);}, child: Text('Home Page'),),  
+            RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => DealListGetPage()),);}, child: Text('Get Deal List Page'),),                 
+            RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => DealPostPage()),);}, child: Text('Post Deal Page'),),                 
             RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPasswordPage()),);}, child: Text('Reset Password'),),     
             RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()),);}, child: Text('Sign Up'),),     
             RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()),);}, child: Text('Login '),),   

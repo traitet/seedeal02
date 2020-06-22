@@ -7,15 +7,12 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:seedeal02/screens/MenuPage.dart';
 import 'package:seedeal02/screens/SignUpPage.dart';
 
-
 //============================================================================
 // DECLARE VARIABLE
 //============================================================================  
-
 final GoogleSignIn googleSignIn = GoogleSignIn();
 final FirebaseAuth _auth = FirebaseAuth.instance;
-
-  
+ 
 
 //=================================================================================
 // FUNCTION#1 LOGIN WITH GOOGLE
@@ -23,7 +20,6 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 Future<FirebaseUser> loginWithGoogle() async {
   final GoogleSignInAccount googleUser = await googleSignIn.signIn();
   final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-
   final AuthCredential credential = GoogleAuthProvider.getCredential(
       idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
   AuthResult authResult = await _auth.signInWithCredential(credential);
@@ -99,7 +95,6 @@ Future<bool> registerWithEmail(
     return false;
   });
 }
-
 
 //=================================================================================
 // FUNCTION#4 LOGIN BY APPLE
