@@ -1,12 +1,18 @@
 //==========================================================================
 // IMPORT
 //==========================================================================
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:seedeal02/models/DealModel.dart';
+import 'package:seedeal02/services/LoggerService.dart';
 import '../widgets/ButtonBarWidget.dart';
 import '../widgets/TextFieldWidget.dart';
 import '../models/AppConfigModel.dart';
 import '../services/DealService.dart' as DealService;
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as Path;
 
 //==========================================================================
 // CLASS
@@ -21,7 +27,9 @@ class DealPostPage extends StatefulWidget {
 // STATE
 //==========================================================================
 class _DealPostPageState extends State<DealPostPage> {
-
+  File _image;
+  String _uploadedFileURL = ''; 
+  final picker = ImagePicker();  
 
 
   @override
@@ -49,7 +57,10 @@ class _DealPostPageState extends State<DealPostPage> {
       home: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          actions: <Widget>[IconButton(icon: Icon(Icons.camera),color: Colors.white,onPressed: (){},), ],
+          actions: <Widget>[
+            IconButton(icon: Icon(Icons.picture_in_picture),color: Colors.white,onPressed: (){getImageFromGallery();},),             
+            IconButton(icon: Icon(Icons.local_see),color: Colors.white,onPressed: (){getImageFromCamera();},), 
+            ],
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
@@ -72,9 +83,9 @@ class _DealPostPageState extends State<DealPostPage> {
               padding: const EdgeInsets.all(8.0),
               child: Text('Last Minute Deal',style: AppConfigModel().textStyleMBold),
             ),
-            TextFieldWidget(text: '*Title', icon: Icons.title, controller: titleController,),
-            TextFieldWidget(text: '*Description', icon: Icons.description, controller: descriptionController,),    
-            TextFieldWidget(text: '*Price', icon: Icons.access_alarms, controller: priceController,),             
+            TextFieldWidget(text: '*Title', icon: Icons.featured_play_list, controller: titleController,),
+            TextFieldWidget(text: '*Description', icon: Icons.format_align_left, controller: descriptionController,),    
+            TextFieldWidget(text: '*Price', icon: Icons.attach_money, controller: priceController,),             
             SizedBox(height: 8),       
 //==========================================================================
 // TEXT: PERSONAL DETAIL
@@ -83,31 +94,83 @@ class _DealPostPageState extends State<DealPostPage> {
               padding: const EdgeInsets.all(8.0),
               child: Text('Owner Details',style: AppConfigModel().textStyleMBold),
             ),                     
-            TextFieldWidget(text: '*Name', icon: Icons.account_box,controller: nameController,),
-            TextFieldWidget(text: '*Surname', icon: Icons.account_circle,controller: surnameController,),   
+            TextFieldWidget(text: '*Name', icon: Icons.person,controller: nameController,),
+            TextFieldWidget(text: '*Surname', icon: Icons.recent_actors,controller: surnameController,),   
             SizedBox(height: 24),              
 
 //==========================================================================
 // BUTTON
 //==========================================================================      
-            ButtonBarWidget(onPressed: () {      
+            ButtonBarWidget(onPressed: () async {      
+//==========================================================================================
+// UPLOAD FILE
+//========================================================================================== 
+                  if (_image != null){await fnUploadFile();}              
 //==========================================================================
 // CALL SERVICE: SET DATA TO FIREBASE
 //==========================================================================               
                   DealService.setDeal(
+                    context,
                     DealModel(
                       name: titleController.text,
                       description: descriptionController.text,
                       price: double.parse(priceController.text),                      
                       createdBy: nameController.text,                      
-                      imageUrl: surnameController.text,
+                      imageUrl: _uploadedFileURL,
                       docType: 'HOTEL',
                     )
                   );
-            },splashColor: Colors.pink,text: "Save",),            
+            },splashColor: Colors.pink,text: "Save",),  
+//================================================================================
+// BUILD WIDGET IMAGE AND TEXT (1) UPLOAD 2) GOOGLE 3) WRONG URL
+//================================================================================
+            SizedBox(height: 16,),
+            _image != null ? 
+              Image.asset(_image.path,height: 200,):
+              Container(
+                alignment: Alignment.center,
+                child: Text('Please select image from a top button',style: TextStyle(fontSize: 16),)),
           ],),
         ),
       ),
     );
   }
+
+//==========================================================================
+// GET IMAGE FROM CAMERA
+//==========================================================================    
+  Future getImageFromCamera() async {
+      final pickedFile = await picker.getImage(source: ImageSource.camera);
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
+//==========================================================================  
+// GET IMAGE FROM GALLERY
+//==========================================================================    
+  Future getImageFromGallery() async {
+      final pickedFile = await picker.getImage(source: ImageSource.gallery);
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
+    
+//==========================================================================================
+// UPLOAD IMAGE TO GOOGLE STORAGE
+//==========================================================================================
+  Future fnUploadFile() async {
+    StorageReference storageReference = FirebaseStorage.instance.ref().child('chats/${Path.basename(_image.path)}}');
+    StorageUploadTask uploadTask = storageReference.putFile(_image);
+    await uploadTask.onComplete;
+    logger.i('File Uploaded');
+    await storageReference.getDownloadURL().then((fileURL) {
+      setState(() {
+        _uploadedFileURL = fileURL;
+      
+      });
+    });
+  }
+
+
+
 }

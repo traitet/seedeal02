@@ -2,14 +2,16 @@
 // IMPORT
 //==========================================================================
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:seedeal02/models/DealModel.dart';
+import 'package:seedeal02/services/ShowNotiService.dart';
 import 'LoggerService.dart';
 
 
 //==========================================================================
 // FUNCTION
 //==========================================================================
-Future<void> setDeal(DealModel dealModel){
+Future<void> setDeal(BuildContext context,DealModel dealModel){
 //==========================================================================
 // RETURN
 //==========================================================================     
@@ -21,7 +23,7 @@ Future<void> setDeal(DealModel dealModel){
 //==========================================================================
 // SHOW MESSAGEBOX (SUCCESS)
 //==========================================================================      
-    // showMessageBox(context, "success", "Register Product($documentName) to Firestore Database completely", actions: [dismissButton(context)]);
+    showMessageBox(context, "success", "Register completely", actions: [dismissButton(context)]);   
     logger.i("setData Success");
 //==========================================================================
 // CATCH ERROR
@@ -48,8 +50,7 @@ Future<List<DealModel>> getDealList(){
 //==========================================================================
 // SHOW MESSAGEBOX (SUCCESS)
 //==========================================================================      
-    // showMessageBox(context, "success", "Register Product($documentName) to Firestore Database completely", actions: [dismissButton(context)]);
-    logger.i("Set Data Success");
+    logger.i("Get Data Success"); 
     returnData.documents.forEach((f) => logger.i('${f.data}}'));
     logger.i(List<DealModel>.from(returnData.documents.map((e) => DealModel.fromFilestore(e))));
     return List<DealModel>.from(returnData.documents.map((e) => DealModel.fromFilestore(e)));

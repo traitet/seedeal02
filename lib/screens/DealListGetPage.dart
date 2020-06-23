@@ -1,5 +1,12 @@
+
+//==========================================================================
+// REMAIN
+//==========================================================================
+// 1) GET DATA FROM FIREBASE ( LINK DATA FROM SERVICE)
+
 //==========================================================================
 // IMPORT
+//==========================================================================
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import '../widgets/LVHotelVertWidget.dart';
