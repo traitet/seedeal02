@@ -8,7 +8,6 @@
 // IMPORT
 //==========================================================================
 import 'package:flutter/material.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import '../widgets/LVHotelVertWidget.dart';
 import '../screens/DealGetPage.dart';
 
@@ -19,15 +18,15 @@ class DealListGetPage extends StatefulWidget {
   @override
   _DealListGetPageState createState() => _DealListGetPageState();
 }
-
 //==========================================================================
 // STATE CLASS
 //==========================================================================
 class _DealListGetPageState extends State<DealListGetPage> {
+//==========================================================================
+// BUILD WIDGET
+//==========================================================================  
   @override
   Widget build(BuildContext context) {
-    // const padding = 15.0;
-    FlutterStatusbarcolor.setStatusBarColor(Theme.of(context).primaryColor);
     return MaterialApp(
 //==========================================================================
 // SHOW DEBUG
@@ -46,13 +45,7 @@ class _DealListGetPageState extends State<DealListGetPage> {
 //==========================================================================
 // SCAFFOLD / TITLE + BACK
 //========================================================================== 
-            //        appBar: AppBar(
-            //           iconTheme: IconThemeData(color: Colors.black),
-            //           leading: IconButton(icon: Icon(Icons.arrow_back_ios,color: Colors.white,),
-            //           onPressed: () => Navigator.of(context).pop()),
-            //           centerTitle: true,
-            //           title: Text('Search Hotel'),
-            // ),
+        appBar: buildAppBar(context),
 //==========================================================================
 // BODY
 //==========================================================================
@@ -60,25 +53,12 @@ class _DealListGetPageState extends State<DealListGetPage> {
               child: Column(
                 children: <Widget>[
 //==========================================================================
-// SCAFFOLD / TITLE + BACK
-//========================================================================== 
-                   AppBar(
-                      iconTheme: IconThemeData(color: Colors.black),
-                      leading: IconButton(
-                      icon: Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
-                    ),
-                  onPressed: () => Navigator.of(context).pop()),
-                  centerTitle: true,
-                  title: Text('Search Hotel'),
-            ) ,          
-//==========================================================================
 // HEADER BAR# HEADER
 //==========================================================================
                 Container(
+                  color: Colors.black87,
                   padding: EdgeInsets.only(top: 8, bottom: 8),
-                  decoration: BoxDecoration(color: Colors.black87),    
+                  //decoration: BoxDecoration(color: Colors.black87),    
                   alignment: Alignment.center,
                   child: Text('Manchester to London', style: TextStyle(color: Colors.white,fontSize: 18),),
                 ) ,
@@ -86,9 +66,11 @@ class _DealListGetPageState extends State<DealListGetPage> {
 // HEADER BAR# LINE2
 //==========================================================================              
                 Container(
-                    decoration: BoxDecoration(color: Colors.black87), 
+                    color: Colors.black87,
+                    //decoration: BoxDecoration(color: Colors.black87), 
                     padding: EdgeInsets.only(bottom: 8),                               
                     child: Row(children: <Widget>[
+                    SizedBox(width: 8,),
                     Text('30 May - 31 May', style: TextStyle(color: Colors.white, fontSize: 12),),
                     Text(' | ', style: TextStyle(color: Colors.white),),
                     Icon(Icons.person,color: Colors.white, size:18),
@@ -101,35 +83,78 @@ class _DealListGetPageState extends State<DealListGetPage> {
                   ],),
                 ) , 
 //==========================================================================
-// LISTVIEW & CARD
-//==========================================================================       
-  Expanded(
-//==========================================================================
 // CALL WIDGET
-//==========================================================================       
-    child: LVHotelVertWidget(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => DealGetPage()),);
-      },
-    ),
-  ),
- //==========================================================================
-// LISTVIEW & CARD
+//==========================================================================         
+                Expanded(child: LVHotelVertWidget(onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => DealGetPage()),);},),),
 //==========================================================================
-                  // Expanded(child: Container(
-                  //   child: LVVertSearchHotelWidget(
-                  //     onTap: (){
-                  //       Navigator.push(context, 
-                  //       MaterialPageRoute(builder: (context) => HotelDetailPage()),);},
-                  //   ),
-                  // )),
+// END LISTVIEW
+//========================================================================== 
+              ],),)));
+  } // END  CLASS
+
 
 //==========================================================================
-// WIDGET
+// BUILD APPBAR FUNCTION
 //==========================================================================
-              ],
+  AppBar buildAppBar(BuildContext context) {
+    return AppBar(
+//==========================================================================
+// ICON BUTTON
+//==========================================================================          
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.filter_list),color: Colors.white,onPressed: (){},),          
+          ],
+//==========================================================================
+// BACK BUTTON
+//==========================================================================             
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+//==========================================================================
+// TITLE
+//==========================================================================           
+        title: Text('Search Hotel'),
+//==========================================================================
+// CENTER
+//==========================================================================             
+        centerTitle: false  ,
+//==========================================================================
+// SEARCH BAR
+//==========================================================================   
+        bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(60.0),
+        child:  Padding(
+          padding: const EdgeInsets.only(left: 10.0,right: 10.0,bottom: 15.0),
+          child: Center(
+            child: Container(
+              height: 40,
+              width: MediaQuery.of(context).size.width ,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
-            )));
+              child: TextField(
+                onSubmitted: (value){
+                },
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                ),
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: Icon(Icons.search, color: Colors.black38),
+                    hintText: "Search ",
+                    hintStyle: TextStyle(color: Colors.black38)),
+              ),
+            ),
+          ),
+        ),
+      ),
+    
+        
+      );
   }
 }
 

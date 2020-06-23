@@ -57,15 +57,28 @@ class _DealPostPageState extends State<DealPostPage> {
       home: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
+//==========================================================================
+// ICON BUTTON
+//==========================================================================          
           actions: <Widget>[
             IconButton(icon: Icon(Icons.picture_in_picture),color: Colors.white,onPressed: (){getImageFromGallery();},),             
             IconButton(icon: Icon(Icons.local_see),color: Colors.white,onPressed: (){getImageFromCamera();},), 
             ],
+//==========================================================================
+// BACK BUTTON
+//==========================================================================             
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
           ),
+//==========================================================================
+// TITLE
+//==========================================================================           
           title: Text('Post Deal Page'),
+//==========================================================================
+// CENTER
+//==========================================================================             
+          centerTitle: false  ,
         ),
 //==========================================================================
 // BODY

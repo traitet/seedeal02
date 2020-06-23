@@ -8,7 +8,6 @@ import '../models/AppConfigModel.dart';
 import '../screens/HomePage.dart';
 import '../widgets/ButtonBarWidget.dart';
 
-
 //==========================================================================
 // MAIN CLASS
 //==========================================================================
@@ -94,6 +93,18 @@ Image(image: AssetImage('assets/images/welcome.JPG')),
                   // setting splashColor to Colors.transparent will remove button ripple effect.
                 ),
                 SizedBox(height: padding),
+//==========================================================================
+// APPGLE BUTTON
+//==========================================================================                
+                AppleSignInButton(
+                  onPressed: () {
+                    login();
+                  // call authentication logic
+                  },
+                  //splashColor: Colors.white,
+                  // setting splashColor to Colors.transparent will remove button ripple effect.
+                ),
+                SizedBox(height: padding),                
 //==========================================================================
 // SIGN-IN BUTTON
 //==========================================================================                
