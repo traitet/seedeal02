@@ -1,7 +1,9 @@
 //==========================================================================
 // IMPORT
 //==========================================================================
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:seedeal02/services/LoggerService.dart';
 import '../widgets/ButtonBarWidget.dart';
 import '../widgets/TextFieldWidget.dart';
 import '../models/AppConfigModel.dart';
@@ -19,24 +21,37 @@ class ResetPasswordPage extends StatefulWidget {
 // STATE
 //==========================================================================
 class _ResetPasswordPageState extends State<ResetPasswordPage> {
+//==========================================================================
+// DECLARE VARIABLE
+//==========================================================================     
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  TextEditingController emailController = TextEditingController();  
+//==========================================================================
+// BUILD WIDGET
+//==========================================================================     
   @override
   Widget build(BuildContext context) {
+//==========================================================================
+// DECLARE VARIABLE FOR WIDGET
+//==========================================================================       
     final emailController = TextEditingController();
-    return MaterialApp(
+    return 
 //==========================================================================
 // SHOW DEBUG
 //==========================================================================      
-      debugShowCheckedModeBanner: false,      
+      // debugShowCheckedModeBanner: false,      
 //==========================================================================
 // THEME
 //==========================================================================
-      theme: ThemeData(
-        primarySwatch: Theme.of(context).primaryColor,
-      ),
+      // theme: ThemeData(
+      //   primarySwatch: Theme.of(context).primaryColor,
+      // ),
 //==========================================================================
 // HOME
 //==========================================================================
-      home: Scaffold(
+      // home: 
+      Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
           leading: IconButton(
@@ -77,19 +92,34 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 //==========================================================================
 // TEXT: E-MAIL
 //==========================================================================            
-          TextFieldWidget(text: '*E-mail', icon: Icons.email, textInputType: TextInputType.emailAddress,),
+          TextFieldWidget(text: '*E-mail', icon: Icons.email, textInputType: TextInputType.emailAddress,controller: emailController,),
           SizedBox(height: 36),   
 //==========================================================================
 // BUTTON
 //==========================================================================      
           ButtonBarWidget(onPressed: () 
           {
-            print(emailController.text);
+            logger.i(emailController.text);
+            resetPassword(); 
             //FILL CODE
           },splashColor: Colors.pink,text: "Reset Password",),             
           ],),
         ),
-      ),
-    );
+      );
   } //BUILD WIDGET 
+
+//==========================================================================
+// RESET PASSWORD FUNCTION
+//==========================================================================  
+  resetPassword() {
+      String email = emailController.text.trim();
+      _auth.sendPasswordResetEmail(email: 'traitet@gmail.com');
+      scaffoldKey.currentState.showSnackBar(SnackBar(
+        content: Text("We send the detail to $email successfully.",
+            style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.green[300],
+      ));
+    }
+
+
 } // CLASS
