@@ -3,14 +3,12 @@
 //==========================================================================
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
-import '../screens/HotelDetailPage.dart';
-import '../screens/MorePage.dart';
-import '../screens/MyBookingPage.dart';
-import '../screens/MyProfilePage.dart';
-import '../screens/SearchDealFlightHotelPage.dart';
-import '../screens/SearchDealHotelPage.dart';
-import '../screens/SearchDealTrainPage.dart';
-import '../widgets/LVHoriSearchDealWidget.dart';
+import 'package:seedeal02/widgets/TabHomeWidget.dart';
+import 'package:seedeal02/widgets/TabMoreWidget.dart';
+import 'package:seedeal02/widgets/TabMyProfileWidget.dart';
+import 'package:seedeal02/widgets/TabNotFoundWidget.dart';
+import 'package:seedeal02/widgets/TabSearchDealWidget.dart';
+import 'package:seedeal02/widgets/TabSearchWidget.dart';
 
 //==========================================================================
 // MAIN CLASS
@@ -24,6 +22,13 @@ class HomePage extends StatefulWidget {
 // STATE CLASS
 //==========================================================================
 class _HomePageState extends State<HomePage> {
+//==========================================================================
+// DECLARE VARIABLE
+//==========================================================================  
+  int _tabIndex = 0;
+//==========================================================================
+// OVERRIDE BUILD WIDGET
+//==========================================================================  
   @override
   Widget build(BuildContext context) {
     // const padding = 15.0;
@@ -43,122 +48,45 @@ class _HomePageState extends State<HomePage> {
 // HOME
 //==========================================================================
         home: Scaffold(
-            // appBar: AppBar(
-            //   title: Text('Login'),
-            // ),
+            //appBar: AppBar(title: Text('Login'),),
 //==========================================================================
 // BUTTOM NAVIGATION BAR
 // www.willowtreeapps.com/ideas/how-to-use-flutter-to-build-an-app-with-bottom-navigation
 //==========================================================================
             bottomNavigationBar: BottomNavigationBar(
-              onTap: (int index){
-                switch (index) {
-                  case 0: {Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()),);}break;
-                  case 1: {Navigator.push(context, MaterialPageRoute(builder: (context) => MyBookingPage()),);}break;
-                  case 2: {Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfilePage()),);}break;
-                  case 3: {Navigator.push(context, MaterialPageRoute(builder: (context) => MorePage()),);}break;                  
-                  default:
-                }
-              },
+//==========================================================================
+// ONTAB -> SETSTATE
+//==========================================================================              
+              onTap: (int index){setState(() {_tabIndex = index;});},
+//==========================================================================
+//BOTTM NAVIGATIONBAR
+//==========================================================================                  
               type: BottomNavigationBarType.fixed,
-              currentIndex: 0,
+              currentIndex: _tabIndex,
               items: [
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.home), title: Text('Home')   
-                    ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.business_center),
-                  title: Text('Booking'),
-                ),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.person), title: Text('My Profile')),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.more_horiz), title: Text('More')),
+                BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home') ),
+                BottomNavigationBarItem(icon: Icon(Icons.assignment_ind),title: Text('Deal'),),                
+                BottomNavigationBarItem(icon: Icon(Icons.search),title: Text('Search'),),
+                BottomNavigationBarItem(icon: Icon(Icons.person), title: Text('My Profile')),
+                BottomNavigationBarItem(icon: Icon(Icons.more_horiz), title: Text('More')),
               ],
             ),
 //==========================================================================
 // BODY
 //==========================================================================
-            body: ListView(
-              children: <Widget>[
+            body: 
+                    _tabIndex == 0 ? TabHomeWidget():
+                    _tabIndex == 1 ? TabSearchDealWidget():
+                    _tabIndex == 2 ? TabSearchWidget():
+                    _tabIndex == 3 ? TabMyProfileWidget():         
+                    _tabIndex == 4 ? TabMoreWidget(): 
+                    TabNotFoundWidget()                 
 //==========================================================================
-// IMAGE
+// END: SCAFFOLD & MATERIAL APP
+//==========================================================================            
+    ));
 //==========================================================================
-                Image(image: AssetImage('assets/images/tophome.JPG')),
+// END: OVERRIDE & CLASS
 //==========================================================================
-// TAB BAR
-//==========================================================================
-                Container(
-                  height: 80,
-                  color: Colors.pink,
-                  child: DefaultTabController(
-                    initialIndex: 0,
-                    length: choices.length,
-                    child: TabBar(
-                    onTap: (int index){
-                      switch (index) {
-                        case 0: {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SearchDealFlightHotelPage()),);}break;
-                        case 1: {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SearchDealTrainPage()),);}break;
-                        case 2: {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SearchDealHotelPage()),);}break;              
-                        default:
-                      }
-                    },                            
-                      tabs: choices.map((Choice choice) {
-                        return Tab(
-                          text: choice.title,
-                          icon: Icon(choice.icon),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                ),
-//==========================================================================
-// TOP DEAL
-//==========================================================================
-      Padding(
-        padding: const EdgeInsets.only(right: 8,left: 8, top: 8, bottom: 4),
-        child: Text('Top Deals',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),), 
-      ),
-//==========================================================================
-// LIST VIEW HORIZONAL
-//==========================================================================   
-      LVHoriSearchDealWidget(onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => HotelDetailPage()),);},), 
-//==========================================================================
-// TOP DEAL
-//==========================================================================
-      Padding(
-        padding: const EdgeInsets.only(right: 8,left: 8, top: 8, bottom: 4),
-        child: Text('Something extra for your trip?',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),), 
-      ),
- //==========================================================================
-// IMAGE
-//==========================================================================           
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Image(image: AssetImage('assets/images/lady.JPG')),
-      ),
-//==========================================================================
-// WIDGET
-//==========================================================================
-            ],
-            )));
-  }
-}
+  }}
 
-//==========================================================================
-// CLASS CHOICE
-//==========================================================================
-class Choice {
-  const Choice({this.title, this.icon});
-  final String title;
-  final IconData icon;
-}
-
-//==========================================================================
-// CLASS CHOICE
-//==========================================================================
-const List<Choice> choices = const <Choice>[
-  Choice(title: 'Flight + Hotel', icon: Icons.flight),
-  Choice(title: 'Train', icon: Icons.tram),
-  Choice(title: 'Hotel', icon: Icons.hotel),
-];

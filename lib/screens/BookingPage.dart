@@ -2,24 +2,24 @@
 // IMPORT
 //==========================================================================
 import 'package:flutter/material.dart';
-import '../screens/HomePage.dart';
-import '../screens/MorePage.dart';
-import '../screens/MyProfilePage.dart';
+import 'HomePage.dart';
+import 'MorePage.dart';
+import 'MyProfilePage.dart';
 import '../widgets/ButtonBarWidget.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 //==========================================================================
 // MAIN CLASS
 //==========================================================================
-class MyBookingPage extends StatefulWidget {
+class BookingPage extends StatefulWidget {
   @override
-  _MyBookingPageState createState() => _MyBookingPageState();
+  _BookingPageState createState() => _BookingPageState();
 }
 
 //==========================================================================
 // STATE CLASS
 //==========================================================================
-class _MyBookingPageState extends State<MyBookingPage> {
+class _BookingPageState extends State<BookingPage> {
   @override
   Widget build(BuildContext context) {
     const padding = 15.0;
@@ -50,7 +50,7 @@ class _MyBookingPageState extends State<MyBookingPage> {
               onTap: (int index){
                 switch (index) {
                   case 0: {Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()),);}break;
-                  case 1: {Navigator.push(context, MaterialPageRoute(builder: (context) => MyBookingPage()),);}break;
+                  case 1: {Navigator.push(context, MaterialPageRoute(builder: (context) => BookingPage()),);}break;
                   case 2: {Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfilePage()),);}break;
                   case 3: {Navigator.push(context, MaterialPageRoute(builder: (context) => MorePage()),);}break;                  
                   default:

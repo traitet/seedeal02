@@ -2,86 +2,31 @@
 // IMPORT
 //==========================================================================
 import 'package:flutter/material.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
-import '../screens/HomePage.dart';
-import '../screens/MorePage.dart';
-import '../screens/BookingPage.dart';
 import '../screens/PaymentMethodPage.dart';
 import '../screens/TravelBuddiesPage.dart';
 import '../screens/LoginPage.dart';
 import '../screens/PersonalDetailPage.dart';
 
-
 //==========================================================================
 // MAIN CLASS
 //==========================================================================
-class MyProfilePage extends StatefulWidget {
+class TabMyProfileWidget extends StatelessWidget {
+//==========================================================================
+// CONSTUCTURE
+//==========================================================================  
+  const TabMyProfileWidget({
+    Key key,
+  }) : super(key: key);
+//==========================================================================
+// BUILD WIDGET
+//==========================================================================
   @override
-  _MyProfilePageState createState() => _MyProfilePageState();
-}
-
-//==========================================================================
-// STATE CLASS
-//==========================================================================
-class _MyProfilePageState extends State<MyProfilePage> {
-  @override
-  Widget build(BuildContext context) {
-    FlutterStatusbarcolor.setStatusBarColor(Theme.of(context).primaryColor);
-    return MaterialApp(
-//==========================================================================
-// SHOW DEBUG
-//==========================================================================      
-      debugShowCheckedModeBanner: false,         
-//==========================================================================
-// THEME
-//==========================================================================
-      theme: ThemeData(
-        primarySwatch: Theme.of(context).primaryColor,
-      ),
-//==========================================================================
-// HOME
-//==========================================================================
-      home: Scaffold(
-        // appBar: AppBar(
-        //   title: Text('Login'),
-        // ),
-//==========================================================================
-// BUTTOM NAVIGATION BAR
-// www.willowtreeapps.com/ideas/how-to-use-flutter-to-build-an-app-with-bottom-navigation
-//==========================================================================
-        bottomNavigationBar: BottomNavigationBar(
-              onTap: (int index){
-                switch (index) {
-                  case 0: {Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()),);}break;
-                  case 1: {Navigator.push(context, MaterialPageRoute(builder: (context) => BookingPage()),);}break;
-                  case 2: {Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfilePage()),);}break;
-                  case 3: {Navigator.push(context, MaterialPageRoute(builder: (context) => MorePage()),);}break;                  
-                  default:
-                }
-              },          
-          type: BottomNavigationBarType.fixed,
-          currentIndex: 2,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text('Home'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.business_center),
-              title: Text('Booking'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              title: Text('My Profile'),
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.more_horiz), title: Text('More')),
-          ],
-        ),
+    Widget build(BuildContext context) {
+    return 
 //==========================================================================
 // BODY
 //==========================================================================
-        body: Padding(
+        Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
             child: ListView(
@@ -155,8 +100,6 @@ class _MyProfilePageState extends State<MyProfilePage> {
 
             ),
           ),
-        ),
-      ),
-    );
+        );
   }
 }

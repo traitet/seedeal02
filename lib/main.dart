@@ -11,7 +11,7 @@ import './screens/PaymentMethodPage.dart';
 import './screens/HomePage.dart';
 import './screens/ManageBookingPage.dart';
 import './screens/MenuPage.dart';
-import './screens/MyBookingPage.dart';
+import './screens/BookingPage.dart';
 import './screens/MyProfilePage.dart';
 import './screens/ResetPasswordPage.dart';
 import './screens/SampleTabbarPage.dart';
@@ -137,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
             RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => MenuPage()),);}, child: Text('Side Menu'),),  
             RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => MorePage()),);}, child: Text('More Page'),),              
             RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfilePage()),);}, child: Text('My Profile'),),   
-            RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => MyBookingPage()),);}, child: Text('My Booking'),),   
+            RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => BookingPage()),);}, child: Text('My Booking'),),   
             RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ManageBookingPage()),);}, child: Text('Manage Booking'),),    
             RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => SampleTabbarPage()),);}, child: Text('Sample Tab bar Page'),),              
           ],
