@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     // const padding = 15.0;
-    //FlutterStatusbarcolor.setStatusBarColor(Theme.of(context).primaryColor);
+    FlutterStatusbarcolor.setStatusBarColor(Theme.of(context).primaryColor);
     return MaterialApp(
 //==========================================================================
 // SHOW DEBUG

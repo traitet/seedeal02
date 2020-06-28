@@ -4,7 +4,6 @@
 import 'package:flutter/material.dart';
 import '../screens/PaymentMethodPage.dart';
 import '../screens/TravelBuddiesPage.dart';
-import '../screens/LoginPage.dart';
 import '../screens/PersonalDetailPage.dart';
 import '../singletons/GlobalAppData.dart';
 import '../services/FirebaseAuthenService.dart';
