@@ -14,6 +14,11 @@ class GlobalAppData {
   String text = '';
   bool  isLogin = false;
   String userName = '';
+  String email = '';
+  String name = '';
+  String surname = '';
+  String imageProfileUrl = '';
+  String mobile = '';
 //==========================================================================
 // FACTORY APP DATA
 //==========================================================================  

@@ -3,7 +3,6 @@
 //==========================================================================
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
-import '../singletons/GlobalAppData.dart';
 import '../widgets/TabHomeWidget.dart';
 import '../widgets/TabMoreWidget.dart';
 import '../widgets/TabMyProfileWidget.dart';
@@ -49,7 +48,7 @@ class _HomePageState extends State<HomePage> {
 // HOME
 //==========================================================================
         home: Scaffold(
-            appBar: AppBar(title: Text(globalAppData.userName),),
+            // appBar: AppBar(title: Text(globalAppData.userName),),
 //==========================================================================
 // BUTTOM NAVIGATION BAR
 // www.willowtreeapps.com/ideas/how-to-use-flutter-to-build-an-app-with-bottom-navigation

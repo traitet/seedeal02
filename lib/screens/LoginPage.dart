@@ -95,13 +95,20 @@ Image(image: AssetImage('assets/images/welcome.JPG')),
 //==========================================================================                
                 GoogleSignInButton(
                   onPressed: () {
-                     loginWithGoogle(context).then((result){
-                      showMessageBox(context, "Success", result.displayName.toString(), actions: [dismissButton(context)]);  
-                        //result.sendEmailVerification();
-                        globalAppData.isLogin = true;
-                        globalAppData.userName = result.email;
-
-
+                     loginWithGoogle(context).then((authResult){
+                      showMessageBox(context, "Success", authResult.displayName.toString(), actions: [dismissButton(context)]);  
+//==========================================================================
+// APP DATA
+//==========================================================================
+                    //result.sendEmailVerification();          
+                    globalAppData.isLogin = true;
+                    globalAppData.email = authResult.email;
+                    globalAppData.name = authResult.displayName;     
+                    globalAppData.mobile = authResult.phoneNumber;   
+                    globalAppData.imageProfileUrl = authResult.photoUrl;                            
+//==========================================================================
+// NAVIGATE
+//==========================================================================
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()),);
                     }).catchError((error){
                       showMessageBox(context, "Error", error.details, actions: [dismissButton(context)]);   

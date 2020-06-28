@@ -3,6 +3,7 @@
 //==========================================================================
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:seedeal02/services/FirebaseAuthenService.dart';
 import '../screens/BookingPage.dart';
 import '../screens/SearchFlightHotelPage.dart';
 import '../screens/SearchHotelPage.dart';
@@ -47,9 +48,7 @@ class TabMoreWidget extends StatelessWidget {
 //==========================================================================
 // LIST TILE & TEXT: MY PERFERENCE
 //==========================================================================  
-            ListTile(trailing: Icon(Icons.home),title: Text('Booking'),onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => BookingPage()),);},
-            ),  
+            ListTile(trailing: Icon(Icons.home),title: Text('Booking'),onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => BookingPage()),);},),  
             ListTile(trailing: Icon(Icons.home),title: Text('Flight + Hotel'),onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => SearchFlightHotelPage()),);},),  
             ListTile(trailing: Icon(Icons.hotel),title: Text('Hotels'),onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => SearchHotelPage()),);},),     
             ListTile(trailing: Icon(Icons.flight),title: Text('Flights'),onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => SearchFlightHotelPage()),);},),   
@@ -59,7 +58,13 @@ class TabMoreWidget extends StatelessWidget {
             ListTile(trailing: Icon(Icons.person),title: Text('Add Traveller'),onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => AddTravellerPage()),);},),                                                      
             ListTile(trailing: Icon(Icons.help),title: Text('Need help?'),onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => AddTravellerPage()),);},),         
             ListTile(trailing: Icon(Icons.rate_review),title: Text('Rate the app'),),      
-            ListTile(trailing: Icon(Icons.web),title: Text('About'),onTap: (){Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()),);},),         
+            ListTile(trailing: Icon(Icons.web),title: Text('About'),onTap: (){Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()),);},),      
+            ListTile(trailing: Icon(Icons.exit_to_app),title: Text('Logout'),onTap: (){
+              signOut(context); 
+              // Navigator.pop(context);
+              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()),);
+//  Navigator.of(context).popUntil((route) => route.isFirst);
+            },),                    
           ],
 //==========================================================================
 // LISTTILE

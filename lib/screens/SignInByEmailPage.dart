@@ -101,7 +101,7 @@ signIn(BuildContext context, {String email, String password})
 // APP DATA
 //==========================================================================          
             globalAppData.isLogin = true;
-            globalAppData.userName = email;
+            globalAppData.email = email;
       })
       .catchError((error){
 //==========================================================================
@@ -112,6 +112,7 @@ signIn(BuildContext context, {String email, String password})
 // ERROR: SNACKBAR
 //==========================================================================  
           scaffoldKey.currentState.showSnackBar(SnackBar(content: Text(error.details, style: TextStyle(color: Colors.white)),backgroundColor: Colors.red,));
+          //Scaffold.of(context).showSnackBar(SnackBar(content: Text(error.details, style: TextStyle(color: Colors.white)),backgroundColor: Colors.red,));
       });
       
     }

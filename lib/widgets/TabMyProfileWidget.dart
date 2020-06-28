@@ -6,6 +6,7 @@ import '../screens/PaymentMethodPage.dart';
 import '../screens/TravelBuddiesPage.dart';
 import '../screens/LoginPage.dart';
 import '../screens/PersonalDetailPage.dart';
+import '../singletons/GlobalAppData.dart';
 
 //==========================================================================
 // MAIN CLASS
@@ -22,6 +23,8 @@ class TabMyProfileWidget extends StatelessWidget {
 //==========================================================================
   @override
     Widget build(BuildContext context) {
+      String imageUrl = globalAppData.imageProfileUrl; 
+      String displayName = globalAppData.name;
     return 
 //==========================================================================
 // BODY
@@ -43,7 +46,7 @@ class TabMyProfileWidget extends StatelessWidget {
                           shape: BoxShape.circle,
                           image: DecorationImage(
                             fit: BoxFit.fill,
-                            image: AssetImage('assets/images/nueng.png'),
+                            image:  imageUrl == '' ?  AssetImage('assets/images/nueng.png'): Image.network(imageUrl),
                           )),
                     ),
                     SizedBox(width: 15),
@@ -57,7 +60,7 @@ class TabMyProfileWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text('Hi there!'),
-                            Text('Traitet Thepbandansuk',
+                            Text(displayName == '' ? 'Traitet Thepbandansuk': displayName,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 style: TextStyle(
@@ -86,8 +89,8 @@ class TabMyProfileWidget extends StatelessWidget {
 //==========================================================================              
     Text('Account Settings',style: TextStyle(fontSize: 16,color: Colors.black, fontWeight: FontWeight.bold)),     
     SizedBox(height: 5),        
-    ListTile(trailing: Icon(Icons.chrome_reader_mode),title: Text('Personal Details & Password'),onTap: (){Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PersonalDetailPage()),);},),   
-    ListTile(trailing: Icon(Icons.exit_to_app),title: Text('Logout'),onTap: (){Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()),);},),        
+    ListTile(trailing: Icon(Icons.chrome_reader_mode),title: Text('Personal Details & Password'),onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => PersonalDetailPage()),);},),   
+    ListTile(trailing: Icon(Icons.exit_to_app),title: Text('Logout'),onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()),);},),        
     
 
 

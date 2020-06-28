@@ -3,8 +3,6 @@
 //==========================================================================
 import 'package:flutter/material.dart';
 import 'HomePage.dart';
-import 'MorePage.dart';
-import 'MyProfilePage.dart';
 import '../widgets/ButtonBarWidget.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
@@ -51,8 +49,8 @@ class _BookingPageState extends State<BookingPage> {
                 switch (index) {
                   case 0: {Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()),);}break;
                   case 1: {Navigator.push(context, MaterialPageRoute(builder: (context) => BookingPage()),);}break;
-                  case 2: {Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfilePage()),);}break;
-                  case 3: {Navigator.push(context, MaterialPageRoute(builder: (context) => MorePage()),);}break;                  
+                  // case 2: {Navigator.push(context, MaterialPageRoute(builder: (context) => MyProfilePage()),);}break;
+                  // case 3: {Navigator.push(context, MaterialPageRoute(builder: (context) => MorePage()),);}break;                  
                   default:
                 }
               },                

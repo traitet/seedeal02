@@ -1,6 +1,7 @@
 
 import 'package:apple_sign_in/apple_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -26,6 +27,7 @@ Future<FirebaseUser> loginWithGoogle(BuildContext context) async {
   final AuthCredential credential = GoogleAuthProvider.getCredential(
       idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
   AuthResult authResult = await _auth.signInWithCredential(credential);
+       
   return authResult.user;
 }
 
@@ -41,7 +43,7 @@ Future<bool> loginWithEmail(BuildContext context,{@required String email, @requi
 // LOGIN COMPLETED
 //=================================================================================    
     logger.i("Welcome " + result.user.uid);
-    Navigator.pop(context);
+    //Navigator.pop(context);
     Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => HomePage()),);
     return true;
 //=================================================================================
@@ -210,7 +212,11 @@ Future firebaseCreateUserWithEmailAndPassword(BuildContext context,{String email
 //=================================================================================
 void signOut(BuildContext context) {
     _auth.signOut();
-    Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (context) => LoginPage()),ModalRoute.withName('/'));
+    Navigator.pushAndRemoveUntil(context,CupertinoPageRoute(builder: (context) => LoginPage()),ModalRoute.withName('/LoginPage'));
+    //Navigator.pop(context);
+    //Navigator.of(context).pushNamedAndRemoveUntil('/LoginPage', (Route<dynamic> route) => false);
+   // Navigator.of(context).popUntil((route) => route.isFirst);
+   //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()),);
   }  
 
 
