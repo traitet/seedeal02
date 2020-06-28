@@ -1,11 +1,8 @@
 //==========================================================================
 // IMPORT
 //==========================================================================
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:seedeal02/screens/LoginPage.dart';
-import '../services/LoggerService.dart';
-import '../services/ShowNotiService.dart';
 import '../widgets/ButtonBarWidget.dart';
 import '../widgets/TextFieldWidget.dart';
 import '../models/AppConfigModel.dart';
