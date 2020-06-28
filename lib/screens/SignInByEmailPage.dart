@@ -3,9 +3,12 @@
 //==========================================================================
 import 'package:flutter/material.dart';
 import 'package:seedeal02/screens/LoginPage.dart';
+import 'package:seedeal02/services/FirebaseAuthenService.dart';
+import 'package:seedeal02/services/ShowNotiService.dart';
 import '../widgets/ButtonBarWidget.dart';
 import '../widgets/TextFieldWidget.dart';
 import '../models/AppConfigModel.dart';
+
 
 //==========================================================================
 // CLASS
@@ -25,6 +28,7 @@ class _SignInByEmailPageState extends State<SignInByEmailPage> {
 //==========================================================================  
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+
 //==========================================================================
 // OVERRIDE BUILD WIDGET
 //==========================================================================  
@@ -46,6 +50,7 @@ class _SignInByEmailPageState extends State<SignInByEmailPage> {
 // HOME
 //==========================================================================
       home: Scaffold(
+        key: scaffoldKey,
         backgroundColor: Colors.black,
         appBar: AppBar(
           leading: IconButton(
@@ -77,49 +82,33 @@ class _SignInByEmailPageState extends State<SignInByEmailPage> {
 //==========================================================================
 // BUTTON
 //==========================================================================      
-            ButtonBarWidget(onPressed: () {
-              //firebaseCreateUserWithEmailAndPassword(context, email: _emailController.text, password: _passwordController.text, confirmPassword: _confirmPasswordController.text);               
-            },splashColor: Colors.pink,text: "Sign-in",),            
+            ButtonBarWidget(onPressed: () {signIn(context,email: _emailController.text,password:_passwordController.text);},splashColor: Colors.pink,text: "Sign-in",),            
           ],),
         ),
       ),
     );
   }
+
 }
 
-// //******************************************************************************************************************************************
-// // FUNCTION/WIDGET -> MOVE TO SERVICE
-// //******************************************************************************************************************************************
-// //==========================================================================
-// // FUNCTION: SIGN UP
-// //==========================================================================   
-// firebaseCreateUserWithEmailAndPassword(BuildContext context,{String email, String password, String confirmPassword}) {
-// //==========================================================================
-// // DECLARE VARIABLE
-// //==========================================================================    
-//     FirebaseAuth _auth = FirebaseAuth.instance;
-// //==========================================================================
-// // VAIDATION
-// //==========================================================================     
-//     if (password == confirmPassword && password.length >= 6) {
-// //==========================================================================
-// // SIGNUP SUCCESS
-// //==========================================================================       
-//         _auth.createUserWithEmailAndPassword(email: email, password: password).then((authenResult) {
-//         logger.i("Sign up user successful.");
-//         logger.i(authenResult.toString());
-//         showMessageBox(context, "Success", 'Register Completed. Select the link in the email to activate your account.', actions: [dismissButton(context)]);        
-// //==========================================================================
-// // SIGNUP ERROR
-// //==========================================================================         
-//       }).catchError((error) {
-//          logger.e(error.message);
-//         showMessageBox(context, "Error", error.message, actions: [dismissButton(context)]);
-//       });
-// //==========================================================================
-// // VALIDATE ERROR
-// //==========================================================================       
-//     } else {
-//       logger.e("Password and Confirm-password do not match");
-//     }
-//   }
+
+
+//==========================================================================
+// FUNCTION SIGN-IN BY EMAIL
+//==========================================================================  
+signIn(BuildContext context, {String email, String password})
+    {
+      loginWithEmail(context, email: email, password: password).catchError((error){
+    //=================================================================================
+    // ERROR ON SHOW MESSAGE
+    //=================================================================================
+          // showMessageBox(context, "Error", error.details, actions: [dismissButton(context)]);  
+    //=================================================================================
+    // ERROR ON SNACKBAR
+    //=================================================================================
+          scaffoldKey.currentState.showSnackBar(SnackBar(content: Text(error.details, style: TextStyle(color: Colors.white)),backgroundColor: Colors.red,));
+      });
+      
+    }
+
+

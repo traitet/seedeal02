@@ -37,7 +37,7 @@ class TextFieldWidget extends StatelessWidget {
    const double textFieldPadding = 4;     
     return Padding(
       padding: const EdgeInsets.all(textFieldPadding),
-      child: TextField(
+      child: TextFormField(
         obscureText: obscureText,
         keyboardType: textInputType,
         decoration: InputDecoration(

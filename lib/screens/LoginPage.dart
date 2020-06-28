@@ -4,10 +4,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
-import 'package:seedeal02/screens/SignInByEmail.dart';
-import 'package:seedeal02/screens/SignUpPage.dart';
+import 'package:seedeal02/screens/HomePage.dart';
+import '../screens/SignInByEmailPage.dart';
+import '../screens/SignUpPage.dart';
+import '../services/FirebaseAuthenService.dart';
+import '../services/ShowNotiService.dart';
 import '../models/AppConfigModel.dart';
-import '../screens/HomePage.dart';
 import '../widgets/ButtonBarWidget.dart';
 
 //==========================================================================
@@ -22,6 +24,10 @@ class LoginPage extends StatefulWidget {
 // STATE CLASS
 //==========================================================================
 class _LoginPageState extends State<LoginPage> {
+//==========================================================================
+// GLOBAL KEY ******
+//==========================================================================  
+   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     const padding = 15.0;
@@ -79,7 +85,7 @@ Image(image: AssetImage('assets/images/welcome.JPG')),
 // FACEBOOK BUTTON
 //==========================================================================                
                 FacebookSignInButton(onPressed: () {
-                  login();
+                  loginWithGoogle(context);
                   // call authentication logic
                 }),
                 SizedBox(height: padding),
@@ -88,11 +94,18 @@ Image(image: AssetImage('assets/images/welcome.JPG')),
 //==========================================================================                
                 GoogleSignInButton(
                   onPressed: () {
-                    login();
-                  // call authentication logic
+                     loginWithGoogle(context).then((result){
+                      showMessageBox(context, "Success", result.displayName.toString(), actions: [dismissButton(context)]);  
+
+
+
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()),);
+                    }).catchError((error){
+                      showMessageBox(context, "Error", error.details, actions: [dismissButton(context)]);   
+                    }).whenComplete(() => {
+                    });
                   },
                   splashColor: Colors.white,
-                  // setting splashColor to Colors.transparent will remove button ripple effect.
                 ),
                 SizedBox(height: padding),
 //==========================================================================
@@ -100,19 +113,25 @@ Image(image: AssetImage('assets/images/welcome.JPG')),
 //==========================================================================                
                 AppleSignInButton(
                   onPressed: () {
-                    login();
-                  // call authentication logic
+                    loginWithApple(context).then((result){
+                      showMessageBox(context, "Success", result.displayName.toString(), actions: [dismissButton(context)]);
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()),);                           
+                    }).catchError((error){
+
+                      showMessageBox(context, "Error", error.details, actions: [dismissButton(context)]);  
+
+                    }).whenComplete(() => {
+                      //showMessageBox(context, "Completed", 'When Completed', actions: [dismissButton(context)])
+                    });
                   },
-                  //splashColor: Colors.white,
-                  // setting splashColor to Colors.transparent will remove button ripple effect.
                 ),
-                SizedBox(height: padding),                
+                SizedBox(height: padding),     
+                           
 //==========================================================================
 // SIGN-IN BUTTON
 //==========================================================================                
                 ButtonBarWidget(
                   onPressed: () {
-                    login();
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignInByEmailPage()),);
                   },
                   splashColor: Colors.pink,
@@ -123,11 +142,7 @@ Image(image: AssetImage('assets/images/welcome.JPG')),
 //==========================================================================
 // TEXT
 //==========================================================================                     
-                Center(
-                    child: Text(
-                  "Haven't got an account?",
-                  style: AppConfigModel().textStyleM,
-                )),
+                Center(child: Text("Haven't got an account?",style: AppConfigModel().textStyleM,)),
                 SizedBox(height: padding),
 //==========================================================================
 // CREATE ACCOUNT BUTTON
@@ -150,6 +165,6 @@ Image(image: AssetImage('assets/images/welcome.JPG')),
 //==========================================================================
 // LOGIN FUNCTION
 //==========================================================================   
-login()=> Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()),);
+// login()=> Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()),);
 
 }
