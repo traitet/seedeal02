@@ -47,7 +47,9 @@ class TabMoreWidget extends StatelessWidget {
 //==========================================================================
 // LIST TILE & TEXT: MY PERFERENCE
 //==========================================================================  
-            ListTile(trailing: Icon(Icons.home),title: Text('Booking'),onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => BookingPage()),);},),  
+            ListTile(trailing: Icon(Icons.home),title: Text('Booking'),onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => BookingPage()),);},
+            ),  
             ListTile(trailing: Icon(Icons.home),title: Text('Flight + Hotel'),onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => SearchFlightHotelPage()),);},),  
             ListTile(trailing: Icon(Icons.hotel),title: Text('Hotels'),onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => SearchHotelPage()),);},),     
             ListTile(trailing: Icon(Icons.flight),title: Text('Flights'),onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => SearchFlightHotelPage()),);},),   
@@ -66,3 +68,22 @@ class TabMoreWidget extends StatelessWidget {
       );
   }
 }
+
+
+
+//==========================================================================
+// CLASS CHOICE
+//==========================================================================
+class Choice {
+  const Choice({this.title, this.icon});
+  final String title;
+  final IconData icon;
+}
+//==========================================================================
+// LIST
+//==========================================================================
+const List<Choice> choices = const <Choice>[
+  const Choice(title: 'Hotel + Flight', icon: Icons.flight),
+  const Choice(title: 'Train', icon: Icons.train),
+  const Choice(title: 'Hotel', icon: Icons.hotel),
+];
