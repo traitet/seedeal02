@@ -14,6 +14,7 @@ class TextFieldWidget extends StatelessWidget {
   final IconData icon;
   final TextInputType textInputType;
   final TextEditingController controller;
+  final bool obscureText; 
 
 //==========================================================================
 // GET/SET
@@ -22,6 +23,7 @@ class TextFieldWidget extends StatelessWidget {
     this.text = 'Name',
     this.icon,
     this.textInputType = TextInputType.text,
+    this.obscureText = false,
     this.controller,
     Key key,
   })  : assert(text != null),
@@ -36,6 +38,7 @@ class TextFieldWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(textFieldPadding),
       child: TextField(
+        obscureText: obscureText,
         keyboardType: textInputType,
         decoration: InputDecoration(
             border: OutlineInputBorder(

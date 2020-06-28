@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:seedeal02/screens/LoginFirebaseEmailPage.dart';
 import 'package:seedeal02/screens/DealPostPage.dart';
 import 'package:seedeal02/screens/MyResetPasswordPage.dart';
+import 'package:seedeal02/screens/ProfilePage.dart';
+import 'package:seedeal02/screens/SignInByEmail.dart';
 import './screens/AddTravellerPage.dart';
 import './screens/PersonalDetailPage.dart';
 import './screens/PaymentMethodPage.dart';
@@ -116,7 +118,9 @@ class _MyHomePageState extends State<MyHomePage> {
 //==========================================================================
 // RAISED BUTTON
 //========================================================================== 
-            RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()),);}, child: Text('Home Page'),),  
+            RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()),);}, child: Text('Home Page'),), 
+            RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => SignInByEmailPage()),);}, child: Text('Sign-in by E-mail'),),               
+            RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()),);}, child: Text('Profile'),),                 
             RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => MyResetPasswordPage()),);}, child: Text('Reset Password Page - test'),),                
             RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => DealListGetPage()),);}, child: Text('Get Deal List Page'),),                 
             RaisedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => DealPostPage()),);}, child: Text('Post Deal Page'),),                 

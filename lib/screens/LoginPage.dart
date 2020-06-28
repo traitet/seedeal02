@@ -4,6 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:seedeal02/screens/SignInByEmail.dart';
+import 'package:seedeal02/screens/SignUpPage.dart';
 import '../models/AppConfigModel.dart';
 import '../screens/HomePage.dart';
 import '../widgets/ButtonBarWidget.dart';
@@ -111,10 +113,10 @@ Image(image: AssetImage('assets/images/welcome.JPG')),
                 ButtonBarWidget(
                   onPressed: () {
                     login();
-                    // call authentication logic
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignInByEmailPage()),);
                   },
                   splashColor: Colors.pink,
-                  text: "Sign in",
+                  text: "Sign in by E-mail",
                 ),
                 SizedBox(height: padding),
                 SizedBox(height: padding),
@@ -131,7 +133,9 @@ Image(image: AssetImage('assets/images/welcome.JPG')),
 // CREATE ACCOUNT BUTTON
 //==========================================================================                
                 FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()),);
+                  },
                   child: Text('Create an Account',
                       style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.blue[800])),
                 ),
