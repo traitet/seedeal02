@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     // const padding = 15.0;
-    FlutterStatusbarcolor.setStatusBarColor(Theme.of(context).primaryColor);
+    //FlutterStatusbarcolor.setStatusBarColor(Theme.of(context).primaryColor);
     return MaterialApp(
 //==========================================================================
 // SHOW DEBUG
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
 //==========================================================================
 // BODY
 //==========================================================================
-            body: 
+            body:
                     _tabIndex == 0 ? TabHomeWidget():
                     _tabIndex == 1 ? TabSearchDealWidget():
                     _tabIndex == 2 ? TabSearchWidget():

@@ -7,6 +7,7 @@ import '../screens/TravelBuddiesPage.dart';
 import '../screens/LoginPage.dart';
 import '../screens/PersonalDetailPage.dart';
 import '../singletons/GlobalAppData.dart';
+import '../services/FirebaseAuthenService.dart';
 
 //==========================================================================
 // MAIN CLASS
@@ -46,7 +47,7 @@ class TabMyProfileWidget extends StatelessWidget {
                           shape: BoxShape.circle,
                           image: DecorationImage(
                             fit: BoxFit.fill,
-                            image:  imageUrl == '' ?  AssetImage('assets/images/nueng.png'): Image.network(imageUrl),
+                            image:  imageUrl == '' ?  AssetImage('assets/images/nueng.png'): NetworkImage(imageUrl),
                           )),
                     ),
                     SizedBox(width: 15),
@@ -63,10 +64,7 @@ class TabMyProfileWidget extends StatelessWidget {
                             Text(displayName == '' ? 'Traitet Thepbandansuk': displayName,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.pink,
-                                    fontWeight: FontWeight.bold))
+                                style: TextStyle(fontSize: 18,color: Colors.pink,fontWeight: FontWeight.bold))
                           ],
                         ),
                       ),
@@ -90,7 +88,11 @@ class TabMyProfileWidget extends StatelessWidget {
     Text('Account Settings',style: TextStyle(fontSize: 16,color: Colors.black, fontWeight: FontWeight.bold)),     
     SizedBox(height: 5),        
     ListTile(trailing: Icon(Icons.chrome_reader_mode),title: Text('Personal Details & Password'),onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => PersonalDetailPage()),);},),   
-    ListTile(trailing: Icon(Icons.exit_to_app),title: Text('Logout'),onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()),);},),        
+//==========================================================================
+// LOTOUT
+//==========================================================================    
+    ListTile(trailing: Icon(Icons.exit_to_app),title: Text('Logout'),onTap: (){signOut(context);}),
+     //Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()),);},),        
     
 
 

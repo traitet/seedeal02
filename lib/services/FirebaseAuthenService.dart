@@ -190,7 +190,7 @@ Future firebaseCreateUserWithEmailAndPassword(BuildContext context,{String email
         _auth.createUserWithEmailAndPassword(email: email, password: password).then((authenResult) {
         logger.i("Sign up user successful.");
         logger.i(authenResult.toString());
-        showMessageBox(context, "Success", 'Register Completed. Select the link in the email to activate your account.', actions: [dismissButton(context)]);        
+        //showMessageBox(context, "Success", 'Register Completed. Select the link in the email to activate your account.', actions: [dismissButton(context)]);        
 //==========================================================================
 // SIGNUP ERROR
 //==========================================================================         

@@ -96,7 +96,7 @@ Image(image: AssetImage('assets/images/welcome.JPG')),
                 GoogleSignInButton(
                   onPressed: () {
                      loginWithGoogle(context).then((authResult){
-                      showMessageBox(context, "Success", authResult.displayName.toString(), actions: [dismissButton(context)]);  
+                     // showMessageBox(context, "Success", authResult.displayName.toString(), actions: [dismissButton(context)]);  
 //==========================================================================
 // APP DATA
 //==========================================================================
