@@ -4,7 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
-import 'package:seedeal02/screens/HomePage.dart';
+import '../screens/HomePage.dart';
+import '../singletons/GlobalAppData.dart';
 import '../screens/SignInByEmailPage.dart';
 import '../screens/SignUpPage.dart';
 import '../services/FirebaseAuthenService.dart';
@@ -96,7 +97,9 @@ Image(image: AssetImage('assets/images/welcome.JPG')),
                   onPressed: () {
                      loginWithGoogle(context).then((result){
                       showMessageBox(context, "Success", result.displayName.toString(), actions: [dismissButton(context)]);  
-
+                        //result.sendEmailVerification();
+                        globalAppData.isLogin = true;
+                        globalAppData.userName = result.email;
 
 
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()),);

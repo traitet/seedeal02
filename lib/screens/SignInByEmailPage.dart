@@ -4,11 +4,10 @@
 import 'package:flutter/material.dart';
 import 'package:seedeal02/screens/LoginPage.dart';
 import 'package:seedeal02/services/FirebaseAuthenService.dart';
-import 'package:seedeal02/services/ShowNotiService.dart';
+import 'package:seedeal02/singletons/GlobalAppData.dart';
 import '../widgets/ButtonBarWidget.dart';
 import '../widgets/TextFieldWidget.dart';
 import '../models/AppConfigModel.dart';
-
 
 //==========================================================================
 // CLASS
@@ -28,13 +27,16 @@ class _SignInByEmailPageState extends State<SignInByEmailPage> {
 //==========================================================================  
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  //============================================================================
+// GLOBAL KEY (SCAFFOLD FOR SNACKBAR)
+//============================================================================  
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();  
 
 //==========================================================================
 // OVERRIDE BUILD WIDGET
 //==========================================================================  
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
 //==========================================================================
 // SHOW DEBUG
@@ -89,26 +91,35 @@ class _SignInByEmailPageState extends State<SignInByEmailPage> {
     );
   }
 
-}
-
-
-
-//==========================================================================
+  //==========================================================================
 // FUNCTION SIGN-IN BY EMAIL
 //==========================================================================  
 signIn(BuildContext context, {String email, String password})
     {
-      loginWithEmail(context, email: email, password: password).catchError((error){
-    //=================================================================================
-    // ERROR ON SHOW MESSAGE
-    //=================================================================================
+      loginWithEmail(context, email: email, password: password).then((value) {
+//==========================================================================
+// APP DATA
+//==========================================================================          
+            globalAppData.isLogin = true;
+            globalAppData.userName = email;
+      })
+      .catchError((error){
+//==========================================================================
+// ERROR: SHOW MESSAGE
+//==========================================================================  
           // showMessageBox(context, "Error", error.details, actions: [dismissButton(context)]);  
-    //=================================================================================
-    // ERROR ON SNACKBAR
-    //=================================================================================
+//==========================================================================
+// ERROR: SNACKBAR
+//==========================================================================  
           scaffoldKey.currentState.showSnackBar(SnackBar(content: Text(error.details, style: TextStyle(color: Colors.white)),backgroundColor: Colors.red,));
       });
       
     }
+
+}
+
+
+
+
 
 

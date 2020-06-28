@@ -15,8 +15,7 @@ import '../services/ShowNotiService.dart';
 //============================================================================  
 final GoogleSignIn googleSignIn = GoogleSignIn();
 final FirebaseAuth _auth = FirebaseAuth.instance;
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
- 
+
 
 //=================================================================================
 // FUNCTION#1 LOGIN WITH GOOGLE

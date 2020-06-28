@@ -1,28 +1,31 @@
 
 //==========================================================================
 // CLASS APP DATA
+// HOW TO USE 1) IMPORT 2) REF. e.g. globalAppDat.email
 //==========================================================================
-class AppData {
+class GlobalAppData {
 //==========================================================================
 // DECLARE VARIABLE
 //==========================================================================  
-  static final AppData _appData = new AppData._internal();
+  static final GlobalAppData _globalAppData = new GlobalAppData._internal();
 //==========================================================================
 // SHARED VARIABLE
 //==========================================================================
-  String text;
+  String text = '';
+  bool  isLogin = false;
+  String userName = '';
 //==========================================================================
 // FACTORY APP DATA
 //==========================================================================  
-  factory AppData() {
-    return _appData;
+  factory GlobalAppData() {
+    return _globalAppData;
   }
-  AppData._internal();
+  GlobalAppData._internal();
 }
 //==========================================================================
 // APP DATA = APPDATA
 //==========================================================================
-final appData = AppData();
+final globalAppData = GlobalAppData();
 
 
 //==========================================================================

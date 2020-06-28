@@ -3,12 +3,13 @@
 //==========================================================================
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
-import 'package:seedeal02/widgets/TabHomeWidget.dart';
-import 'package:seedeal02/widgets/TabMoreWidget.dart';
-import 'package:seedeal02/widgets/TabMyProfileWidget.dart';
-import 'package:seedeal02/widgets/TabNotFoundWidget.dart';
-import 'package:seedeal02/widgets/TabSearchDealWidget.dart';
-import 'package:seedeal02/widgets/TabSearchWidget.dart';
+import '../singletons/GlobalAppData.dart';
+import '../widgets/TabHomeWidget.dart';
+import '../widgets/TabMoreWidget.dart';
+import '../widgets/TabMyProfileWidget.dart';
+import '../widgets/TabNotFoundWidget.dart';
+import '../widgets/TabSearchDealWidget.dart';
+import '../widgets/TabSearchWidget.dart';
 
 //==========================================================================
 // MAIN CLASS
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
 // HOME
 //==========================================================================
         home: Scaffold(
-            //appBar: AppBar(title: Text('Login'),),
+            appBar: AppBar(title: Text(globalAppData.userName),),
 //==========================================================================
 // BUTTOM NAVIGATION BAR
 // www.willowtreeapps.com/ideas/how-to-use-flutter-to-build-an-app-with-bottom-navigation
