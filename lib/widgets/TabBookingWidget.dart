@@ -74,7 +74,7 @@ class TabBookingWidget extends StatelessWidget {
 //==========================================================================
                 ButtonBarWidget(
                   onPressed: () {},
-                  splashColor: Colors.pink,
+                  splashColor: Theme.of(context).primaryColor,
                   text: "Add E-mail",
                 ),
                 SizedBox(height: padding),

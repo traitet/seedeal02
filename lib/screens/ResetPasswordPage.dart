@@ -102,7 +102,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             logger.i(emailController.text);
             resetPassword(); 
             //FILL CODE
-          },splashColor: Colors.pink,text: "Reset Password",),             
+          },splashColor: Theme.of(context).primaryColor,text: "Reset Password",),             
           ],),
         ),
       );

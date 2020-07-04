@@ -63,7 +63,7 @@ class TabMyProfileWidget extends StatelessWidget {
                             Text(displayName == '' ? 'Traitet Thepbandansuk': displayName,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
-                                style: TextStyle(fontSize: 18,color: Colors.pink,fontWeight: FontWeight.bold))
+                                style: TextStyle(fontSize: 18,color: Theme.of(context).primaryColor,fontWeight: FontWeight.bold))
                           ],
                         ),
                       ),

@@ -68,9 +68,9 @@ class _HomePageState extends State<HomePage> {
                 BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home') ),
                 BottomNavigationBarItem(icon: Icon(Icons.assignment_ind),title: Text('Deal'),),                
                 BottomNavigationBarItem(icon: Icon(Icons.search),title: Text('Search'),),
-                BottomNavigationBarItem(icon: Icon(Icons.person), title: Text('My Profile')),
+                BottomNavigationBarItem(icon: Icon(Icons.person), title: Text('Profile')),
+                BottomNavigationBarItem(icon: Icon(Icons.insert_comment), title: Text('Post Deal')),                    
                 BottomNavigationBarItem(icon: Icon(Icons.more_horiz), title: Text('More')),
-                BottomNavigationBarItem(icon: Icon(Icons.insert_comment), title: Text('Post Deal')),                
               ],
             ),
 //==========================================================================
@@ -80,9 +80,9 @@ class _HomePageState extends State<HomePage> {
                     _tabIndex == 0 ? TabHomeWidget():
                     _tabIndex == 1 ? TabSearchDealWidget():
                     _tabIndex == 2 ? TabSearchWidget():
-                    _tabIndex == 3 ? TabMyProfileWidget():         
-                    _tabIndex == 4 ? TabMoreWidget(): 
-                    _tabIndex == 5 ? TabPostDealWidget():                     
+                    _tabIndex == 3 ? TabMyProfileWidget():     
+                    _tabIndex == 4 ? TabPostDealWidget():                              
+                    _tabIndex == 5 ? TabMoreWidget(): 
                     TabNotFoundWidget()                 
 //==========================================================================
 // END: SCAFFOLD & MATERIAL APP

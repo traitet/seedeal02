@@ -105,7 +105,7 @@ class _SearchFlightHotelPageState extends State<SearchFlightHotelPage> {
                                 Container(
                                     padding: EdgeInsets.only(
                                     left: 8, top: 15, bottom: 20),
-                                    child: Text('Leaving on',style: TextStyle(color: Colors.pink, fontSize: 15),)),
+                                    child: Text('Leaving on',style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 15),)),
                                 Container(
                                     child: Text('Tonight',style:TextStyle(color: Colors.grey, fontSize: 15),
                                 )),
@@ -125,7 +125,7 @@ class _SearchFlightHotelPageState extends State<SearchFlightHotelPage> {
                               child: Column(children: <Widget>[
                                 Container(
                                     padding: EdgeInsets.only(left: 8, top: 15, bottom: 20),
-                                    child: Text('Returning on',style: TextStyle(color: Colors.pink, fontSize: 15),)),
+                                    child: Text('Returning on',style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 15),)),
                                 Container(child: Text('Tonight',style: TextStyle(color: Colors.grey, fontSize: 15),)),
                               ])))),
                 ),                        
@@ -138,7 +138,7 @@ class _SearchFlightHotelPageState extends State<SearchFlightHotelPage> {
                   width: double.infinity,
                   child: ButtonBarWidget(
                     onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => SearchHotelPage()),);},
-                    splashColor: Colors.pink,
+                    splashColor: Theme.of(context).primaryColor,
                     text: "Find",
                   ),
                 )                 

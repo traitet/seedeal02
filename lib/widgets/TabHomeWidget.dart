@@ -55,7 +55,7 @@ class _TabHomeWidgetState extends State<TabHomeWidget> {
 //==========================================================================
                 Container(
                   height: 80,
-                  color: Colors.pink,
+                  color: Theme.of(context).primaryColor,
                   child: DefaultTabController(
                     initialIndex: 0,
                     length: choices.length,

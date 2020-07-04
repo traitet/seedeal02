@@ -27,7 +27,7 @@ class TabNotFoundWidget extends StatelessWidget {
     SafeArea(
          child: Container(
            alignment: Alignment.center,
-           color: Colors.pink,
+           color: Theme.of(context).primaryColor,
            child: Text('Under Construction', style: TextStyle(fontSize: 30, color: Colors.white),)),
     );
   }

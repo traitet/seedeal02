@@ -39,10 +39,10 @@ class LVHoriSearchDealWidget extends StatelessWidget {
 //==========================================================================
 // CARD
 //==========================================================================            
-            buildCard('assets/images/hotel1.JPG', 'Book in advance', 'Book early for the best deal and SAVE! Plus secure your deal with a low deposit today!',199),
-            buildCard('assets/images/city1.JPG', 'Costa Blanca', 'Summer 2021 now on sale! Flights + 4 nights bed & breakfast in 4* hotel departing in May.',199),
-            buildCard('assets/images/city2.JPG', 'Dublin', '2 nights hotel return flights Septermber departure ATOL protected',133),
-            buildCard('assets/images/city3.JPG', 'Bali', 'Bargant Bali escape! 14 nights+ flights in a 4* beachfront resort departing in October.',819),                           
+            buildCard(context,'assets/images/hotel1.JPG', 'Book in advance', 'Book early for the best deal and SAVE! Plus secure your deal with a low deposit today!',199),
+            buildCard(context,'assets/images/city1.JPG', 'Costa Blanca', 'Summer 2021 now on sale! Flights + 4 nights bed & breakfast in 4* hotel departing in May.',199),
+            buildCard(context,'assets/images/city2.JPG', 'Dublin', '2 nights hotel return flights Septermber departure ATOL protected',133),
+            buildCard(context,'assets/images/city3.JPG', 'Bali', 'Bargant Bali escape! 14 nights+ flights in a 4* beachfront resort departing in October.',819),                           
           ],
         ),
       )   
@@ -52,7 +52,7 @@ class LVHoriSearchDealWidget extends StatelessWidget {
 //==========================================================================
 // BUILD CARD
 //==========================================================================  
-  buildCard(String imageAssetName, String title, String textDescription, double price) {
+  buildCard(BuildContext context, String imageAssetName, String title, String textDescription, double price) {
     return Container(
       width:  150,      
       height: 200,
@@ -76,7 +76,7 @@ class LVHoriSearchDealWidget extends StatelessWidget {
                     ), 
                     SizedBox(height: 8),
                     Text('from',style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.grey),), 
-                    Text(price.toStringAsFixed(0)+'pp',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.pink),),                
+                    Text(price.toStringAsFixed(0)+'pp',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor),),                
                   ],
                 ),
               ),

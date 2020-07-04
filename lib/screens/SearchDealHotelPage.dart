@@ -187,7 +187,7 @@ class ChoiceCard extends StatelessWidget {
                   width: double.infinity,
                   child: ButtonBarWidget(
                     onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => SearchHotelPage()),);},
-                    splashColor: Colors.pink,
+                    splashColor: Theme.of(context).primaryColor,
                     text: "Find",
                   ),
                 )
@@ -214,7 +214,7 @@ class ChoiceCard extends StatelessWidget {
               verticalDirection: VerticalDirection.down,
               children: <Widget>[
                 SizedBox(height: 16),                
-                Text(title,style: TextStyle(fontSize: 24, color: Colors.pink),),
+                Text(title,style: TextStyle(fontSize: 24, color: Theme.of(context).primaryColor),),
                 SizedBox(height: 16),
                 Text(subTitle,style: TextStyle(fontSize: 16, color: Colors.grey),),
               ],

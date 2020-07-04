@@ -48,7 +48,7 @@ class ButtonBarWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius ?? 3),
         ),
-        color: color??Colors.pink,
+        color: color??Theme.of(context).primaryColor,
         splashColor: splashColor,
         child: Text(text,
             style: textStyle ??

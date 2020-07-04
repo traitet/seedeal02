@@ -92,7 +92,7 @@ class _TabSearchDealTabHotelFlightWidgetState extends State<TabSearchDealTabHote
           width: double.infinity,
           child: ButtonBarWidget(
             onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => SearchHotelPage()),);},
-            splashColor: Colors.pink,
+            splashColor: Theme.of(context).primaryColor,
             text: "Find",
           ),
         )                

@@ -80,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
 //==========================================================================      
             ButtonBarWidget(onPressed: () {
               firebaseCreateUserWithEmailAndPassword(context, email: _emailController.text, password: _passwordController.text, confirmPassword: _confirmPasswordController.text);               
-            },splashColor: Colors.pink,text: "Save",),            
+            },splashColor: Theme.of(context).primaryColor,text: "Save",),            
           ],),
         ),
       ),

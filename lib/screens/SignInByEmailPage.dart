@@ -84,7 +84,7 @@ class _SignInByEmailPageState extends State<SignInByEmailPage> {
 //==========================================================================
 // BUTTON
 //==========================================================================      
-            ButtonBarWidget(onPressed: () {signIn(context,email: _emailController.text,password:_passwordController.text);},splashColor: Colors.pink,text: "Sign-in",),            
+            ButtonBarWidget(onPressed: () {signIn(context,email: _emailController.text,password:_passwordController.text);},splashColor: Theme.of(context).primaryColor,text: "Sign-in",),            
           ],),
         ),
       ),

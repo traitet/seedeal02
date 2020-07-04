@@ -99,7 +99,7 @@ class _TravelBuddiesPageState extends State<TravelBuddiesPage> {
                   width: double.infinity,
                   child: ButtonBarWidget(
                     onPressed: () {},
-                    splashColor: Colors.pink,
+                    splashColor: Theme.of(context).primaryColor,
                     text: "Add traveller",
                   ),
                 ),

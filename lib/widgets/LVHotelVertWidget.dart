@@ -78,7 +78,7 @@ class LVHotelVertWidget extends StatelessWidget {
 //==========================================================================
 // RETURN BUILD CARD
 //==========================================================================  
-                  return buildCard(dealList, index);
+                  return buildCard(context, dealList, index);
               }, 
             ),
           ),
@@ -91,7 +91,7 @@ class LVHotelVertWidget extends StatelessWidget {
 //==========================================================================
 // BUILD CARD METHOD
 //==========================================================================  
-  Card buildCard(List<DealModel> dealList, int index) {
+  Card buildCard(BuildContext context, List<DealModel> dealList, int index) {
     return Card(
 //==========================================================================
 // ROW
@@ -138,7 +138,7 @@ class LVHotelVertWidget extends StatelessWidget {
 //==========================================================================
 // PRICE
 //==========================================================================                                                 
-                          Text(dealList[index].price.toStringAsFixed(0)+' บาท',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.pink),),                       
+                          Text(dealList[index].price.toStringAsFixed(0)+' บาท',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor),),                       
                     ],),
                   )
                 ],) 
