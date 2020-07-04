@@ -54,11 +54,7 @@ class _SearchDealHotelPageState extends State<SearchDealHotelPage> {
 //==========================================================================
           appBar: AppBar(
               iconTheme: IconThemeData(color: Colors.black),
-              leading: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.white,
-                  ),
+              leading: IconButton(icon: Icon(Icons.arrow_back_ios,color: Colors.white,),
                   onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()),)),            
             title: Text('Search Top Deal: Hotel'),
 //==========================================================================

@@ -4,6 +4,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:seedeal02/singletons/GlobalAppData.dart';
+import 'package:seedeal02/widgets/tabpostdeal/PostDealPage.dart';
+import 'package:seedeal02/widgets/tabpostdeal/TabPostDealOnlineWidget.dart';
 //==========================================================================
 // MAIN CLASS
 //==========================================================================
@@ -28,6 +30,7 @@ class _TabPostDealWidgetState extends State<TabPostDealWidget> {
 //==========================================================================
 // DECLARE VARIABLE
 //==========================================================================  
+  int tabIndex = 0;  
   TextEditingController nameController = TextEditingController()..text = globalAppData.name;
   TextEditingController surnameController = TextEditingController();
   TextEditingController nationalityController = TextEditingController()..text = 'Thai';    
@@ -37,36 +40,75 @@ class _TabPostDealWidgetState extends State<TabPostDealWidget> {
   @override
   Widget build(BuildContext context) {
     FlutterStatusbarcolor.setStatusBarColor(Theme.of(context).primaryColor);
-    return  Scaffold(
-        // backgroundColor: Colors.white,
-        appBar: AppBar(
-          //leading: IconButton(icon: Icon(Icons.arrow_back, color: Colors.white),onPressed: () => Navigator.of(context).pop(),),
-          title: Text('Post Deal'),
-          actions: <Widget>[
-          ],
-        ),
+    return  DefaultTabController(
+      length: choices.length,
+      child: Scaffold(
+          // backgroundColor: Colors.white,
+          appBar: AppBar(
+            //leading: IconButton(icon: Icon(Icons.arrow_back, color: Colors.white),onPressed: () => Navigator.of(context).pop(),),
+            title: Text('ประกาศของฉัน'),
 //==========================================================================
-// BODY
+// ACTION -> CHANGE TO WIDGET
+//==========================================================================          
+            actions: <Widget>[
+              FlatButton(
+                onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => PostDealPage()),);},
+                //padding: EdgeInsets.all(2),
+                child: Container(
+                  color: Colors.white,
+                  child: Row(children: <Widget>[
+                    Icon(Icons.add, color: Colors.deepOrange,),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 4,top: 8,bottom: 8,left: 4),
+                      child: Text('เพิ่มรายการ',style: TextStyle(fontSize: 12,color: Colors.deepOrange),),
+                    ),              
+                  ],),
+                ),
+              )
+              
+            ],
 //==========================================================================
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: ListView(
-              children: <Widget>[
-
-//==========================================================================
-// SEARCH BAR
-//==========================================================================
-
-//==========================================================================
-// LISTING
-//==========================================================================
-
-                
-              ],
-            ),
+// TAB BAR
+//==========================================================================  
+          bottom: TabBar(   
+              isScrollable: true,   
+              onTap: (int index){setState(() => tabIndex = index);},  
+              tabs:choices.map((Choice choice) {return Tab(text: choice.title,icon: Icon(choice.icon),);}).toList(), )
           ),
-        ),
+//==========================================================================
+// BODY: TABBAR VIEW
+//==========================================================================
+          body: TabBarView(
+            children: choices.map((Choice choice) {
+              return Container(
+                color: Colors.black87,
+                child: tabIndex == 0 ? TabPostDealOnlineWidget():
+                tabIndex == 1 ? TabPostDealOnlineWidget():
+                tabIndex == 2 ? TabPostDealOnlineWidget():
+                null,
+              );
+            }).toList(),
+          ),   
+      ),
     );
   }
 }
+
+//==========================================================================
+// CLASS CHOICE
+//==========================================================================
+class Choice {
+  const Choice({this.title, this.icon});
+  final String title;
+  final IconData icon;
+}
+//==========================================================================
+// LIST
+//==========================================================================
+const List<Choice> choices = const <Choice>[
+  const Choice(title: 'ออนไลน์ (1)', icon: Icons.flight),
+  const Choice(title: 'รอการตรวจสอบ (2)', icon: Icons.train),
+  const Choice(title: 'รอการแก้ไข (1)', icon: Icons.hotel),
+];
+
+
