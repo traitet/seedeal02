@@ -107,12 +107,11 @@ signIn(BuildContext context, {String email, String password})
 //==========================================================================
 // ERROR: SHOW MESSAGE
 //==========================================================================  
-          // showMessageBox(context, "Error", error.details, actions: [dismissButton(context)]);  
+          //showMessageBox(context, "Error", error.details, actions: [dismissButton(context)]);  
 //==========================================================================
 // ERROR: SNACKBAR
 //==========================================================================  
           scaffoldKey.currentState.showSnackBar(SnackBar(content: Text(error.details, style: TextStyle(color: Colors.white)),backgroundColor: Colors.red,));
-          //Scaffold.of(context).showSnackBar(SnackBar(content: Text(error.details, style: TextStyle(color: Colors.white)),backgroundColor: Colors.red,));
       });
       
     }

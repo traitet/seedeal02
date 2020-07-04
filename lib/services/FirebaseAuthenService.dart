@@ -86,14 +86,21 @@ Future<bool> loginWithEmail(BuildContext context,{@required String email, @requi
         _errormsg = "Operation not allowed!, Please enable it in the firebase console";
         throw PlatformException(code: error.code,details: _errormsg,);           
         break;
-      default: _errormsg = "Unknown error";
+      case "ERROR_NETWORK_REQUEST_FAILED":
+        _errormsg = "Network Error";
+        throw PlatformException(code: error.code,details: error.message,);           
+        break;        
+      default: 
+      _errormsg = "Unknown error";
+        throw PlatformException(code: error.code,details: error.message,);           
+        break;   
     }
 // //=================================================================================
 // // SHOW ERROR MESSAGE
 // //=================================================================================    
 //        showMessageBox(context, "Error", error.details, actions: [dismissButton(context)]);  
 
-    return false;
+    // return false;
   });
 }
 

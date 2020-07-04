@@ -127,9 +127,7 @@ Image(image: AssetImage('assets/images/welcome.JPG')),
                       showMessageBox(context, "Success", result.displayName.toString(), actions: [dismissButton(context)]);
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()),);                           
                     }).catchError((error){
-
                       showMessageBox(context, "Error", error.details, actions: [dismissButton(context)]);  
-
                     }).whenComplete(() => {
                       //showMessageBox(context, "Completed", 'When Completed', actions: [dismissButton(context)])
                     });
@@ -148,7 +146,8 @@ Image(image: AssetImage('assets/images/welcome.JPG')),
                   text: "Sign in by E-mail",
                 ),
                 SizedBox(height: padding),
-                SizedBox(height: padding),
+
+                            
 //==========================================================================
 // TEXT
 //==========================================================================                     

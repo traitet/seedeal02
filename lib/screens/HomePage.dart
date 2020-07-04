@@ -3,6 +3,7 @@
 //==========================================================================
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:seedeal02/widgets/TabPostDealWidget.dart';
 import '../widgets/TabHomeWidget.dart';
 import '../widgets/TabMoreWidget.dart';
 import '../widgets/TabMyProfileWidget.dart';
@@ -69,6 +70,7 @@ class _HomePageState extends State<HomePage> {
                 BottomNavigationBarItem(icon: Icon(Icons.search),title: Text('Search'),),
                 BottomNavigationBarItem(icon: Icon(Icons.person), title: Text('My Profile')),
                 BottomNavigationBarItem(icon: Icon(Icons.more_horiz), title: Text('More')),
+                BottomNavigationBarItem(icon: Icon(Icons.insert_comment), title: Text('Post Deal')),                
               ],
             ),
 //==========================================================================
@@ -80,6 +82,7 @@ class _HomePageState extends State<HomePage> {
                     _tabIndex == 2 ? TabSearchWidget():
                     _tabIndex == 3 ? TabMyProfileWidget():         
                     _tabIndex == 4 ? TabMoreWidget(): 
+                    _tabIndex == 5 ? TabPostDealWidget():                     
                     TabNotFoundWidget()                 
 //==========================================================================
 // END: SCAFFOLD & MATERIAL APP
